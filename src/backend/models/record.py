@@ -1,22 +1,32 @@
 from pydantic import BaseModel
-from artist import ArtistRead as Artist
-from label import LabelRead as Label
-from genre import GenreRead as Genre
+from models.artist import ArtistRead as Artist
+from models.label import LabelRead as Label
+from models.genre import GenreRead as Genre
+from models.track import TrackRead as Track
 from datetime import date as Date
-from track import TrackRead as Track
 
 
 class RecordBase(BaseModel):
     title: str
+    date: Date
     artist: Artist
     label: Label
     genres: list[Genre]
-    date: Date
+
+
+class RecordTracksBase(RecordBase):
     tracks: list[Track]
 
 
-class RecordCreate(RecordBase):
+class RecordCreate(RecordTracksBase):
     pass
+
+
+class RecordTracksRead(RecordTracksBase):
+    id: int
+
+    class config:
+        from_attributes = True
 
 
 class RecordRead(RecordBase):

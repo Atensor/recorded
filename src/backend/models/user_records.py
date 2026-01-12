@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 from enum import StrEnum
-from user import UserRead as User
-from record import RecordRead as Record
+from models.user import UserRead as User
+from models.record import RecordRead as Record
 
 
 class state(StrEnum):

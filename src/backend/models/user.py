@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from rating import TrackRatingBase, RecordRatingBase as TrackRating, RecordRating
+from models.rating import TrackRatingBase, RecordRatingBase as TrackRating, RecordRating
 
 
 class UserBase(BaseModel):

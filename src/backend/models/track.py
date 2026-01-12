@@ -1,6 +1,5 @@
 from pydantic import BaseModel
-from record import RecordRead as Record
-from artist import ArtistRead as Artist
+from models.artist import ArtistRead as Artist
 
 
 class TrackBase(BaseModel):
@@ -10,7 +9,7 @@ class TrackBase(BaseModel):
 
 
 class TrackCreate(TrackBase):
-    pass
+    record_id: int
 
 
 class TrackRead(TrackBase):
@@ -27,10 +26,6 @@ class LyricBase(BaseModel):
 
     class config:
         from_attributes = True
-
-
-class TrackWithLyricCreate(TrackCreate):
-    lyric: LyricBase
 
 
 class TrackWithLyricRead(TrackRead):
