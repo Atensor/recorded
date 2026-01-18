@@ -1,14 +1,14 @@
 from nicegui import ui
 import json
-from components import header
+from components.header import header
 from api_client import get_records
 
 
 def page():
     @ui.page("/")
     def home():
-        header.header()
-
+        header()
+        ui.link(text="Admin Panel", target=("/admin"))
         for record in get_records():
             record_card(record)
 

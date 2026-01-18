@@ -8,8 +8,8 @@ class RatingBase(BaseModel):
 
 
 class RecordRatingBase(RatingBase):
-    record: Record
+    record_id: int
 
 
 class TrackRatingBase(RatingBase):
-    track: Track
+    track_id: int

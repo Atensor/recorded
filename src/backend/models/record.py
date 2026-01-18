@@ -9,16 +9,16 @@ from datetime import date as Date
 class RecordBase(BaseModel):
     title: str
     date: Date
-    artist: Artist
-    label: Label
-    genres: list[Genre]
+    artist_id: int
+    label_id: int
+    genre_ids: list[int]
 
 
 class RecordTracksBase(RecordBase):
-    tracks: list[Track]
+    track_ids: list[int]
 
 
-class RecordCreate(RecordTracksBase):
+class RecordCreate(RecordBase):
     pass
 
 

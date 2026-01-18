@@ -1,11 +1,16 @@
 from fastapi import APIRouter
 from models.label import LabelRead, LabelCreate
-from services.label_service import get_label, create_label
+from services.label_service import get_labels, get_label, create_label
 
 router = APIRouter(
     prefix="/labels",
     tags=["labels"]
 )
+
+
+@router.get("/")
+def labels() -> list[LabelRead]:
+    return get_labels()
 
 
 @router.get("/{id}")

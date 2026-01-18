@@ -1,11 +1,16 @@
 from fastapi import APIRouter
 from models.genre import GenreRead, GenreCreate
-from services.genre_service import get_record_genres, create_genre
+from services.genre_service import get_genres, get_record_genres, create_genre
 
 router = APIRouter(
     prefix="/genres",
     tags=["genres"]
 )
+
+
+@router.get("/")
+def genres():
+    return get_genres()
 
 
 @router.get("/record_{id}")
@@ -14,5 +19,5 @@ def record_genres(record_id: int) -> list[GenreRead]:
 
 
 @router.post("/")
-def pos_genre(genre: GenreCreate):
+def post_genre(genre: GenreCreate):
     create_genre(genre)

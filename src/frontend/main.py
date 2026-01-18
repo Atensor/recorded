@@ -1,5 +1,5 @@
 from nicegui import ui
-from pages import home, record
+from pages import home, record, admin
 
 
 ui.add_css('''
@@ -11,4 +11,5 @@ ui.add_css('''
 
 home.page()
 record.page()
+admin.page()
 ui.run()

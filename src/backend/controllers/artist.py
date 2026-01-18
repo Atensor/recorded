@@ -2,7 +2,10 @@ from fastapi import APIRouter
 from models.artist import ArtistCreate, ArtistRead
 from services.artist_service import get_artist, get_artists, create_artist
 
-router = APIRouter()
+router = APIRouter(
+    prefix="/artists",
+    tags=["artists"]
+)
 
 
 @router.get("/")

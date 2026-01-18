@@ -8,7 +8,7 @@ from controllers.track import router as track_router
 
 app = FastAPI()
 
-app.include_router(artist_router, prefix=("/artists"), tags=["Artist"])
+app.include_router(artist_router)
 app.include_router(genre_router)
 app.include_router(label_router)
 app.include_router(record_router)

@@ -15,11 +15,3 @@ class UserRead(UserBase):
 
     class config:
         from_attributes = True
-
-
-class UserTrackRatingRead(UserRead):
-    rating: TrackRating
-
-
-class UserRecordRatingRead(UserRead):
-    rating: RecordRating

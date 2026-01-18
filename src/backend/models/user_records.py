@@ -12,8 +12,8 @@ class state(StrEnum):
 
 
 class User_ReccordRead(BaseModel):
-    user: User
-    record: Record
+    user_id: int
+    record_id: int
     state: state
 
     class config:

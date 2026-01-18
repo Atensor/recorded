@@ -5,7 +5,7 @@ from models.artist import ArtistRead as Artist
 class TrackBase(BaseModel):
     title: str
     tracknr: int
-    features: list[Artist]
+    feature_ids: list[int]
 
 
 class TrackCreate(TrackBase):

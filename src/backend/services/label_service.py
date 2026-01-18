@@ -1,4 +1,14 @@
-from repositories.label_repo import read_label, write_label
+from repositories.label_repo import read_labels, read_label, insert_label
+
+
+def get_labels():
+    rows = read_labels()
+    return [
+        {
+            "id": row[0],
+            "name": row[1]
+        } for row in rows
+    ]
 
 
 def get_label(id: int):
@@ -10,4 +20,4 @@ def get_label(id: int):
 
 
 def create_label(label):
-    write_label(label)
+    insert_label(label)

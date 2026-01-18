@@ -20,4 +20,4 @@ def record(id: int) -> RecordTracksRead:
 
 @router.post("/")
 def post_record(record: RecordCreate):
-    create_record(record)
+    return create_record(record)

@@ -52,3 +52,54 @@ def get_tracks(record_id):
 
 def get_track(id):
     return tracks[id]
+
+
+def get_artists():
+    artists = [
+        {
+            "id": 0,
+            "name": "Deftones"
+        },
+        {
+            "id": 1,
+            "name": "Black Sabbath"
+        }
+    ]
+    artist_dict = {}
+    for artist in artists:
+        artist_dict[artist["id"]] = artist["name"]
+    return artist_dict
+
+
+def get_labels():
+    labels = [
+        {
+            "id": 0,
+            "name": "Maveric"
+        },
+        {
+            "id": 1,
+            "name": "Sanctuary"
+        }
+    ]
+    label_dict = {}
+    for label in labels:
+        label_dict[label["id"]] = label["name"]
+    return label_dict
+
+
+def get_genres():
+    genres = [
+        {
+            "id": 0,
+            "name": "Metal"
+        },
+        {
+            "id": 1,
+            "name": "Nu Metal"
+        }
+    ]
+    genre_dict = {}
+    for genre in genres:
+        genre_dict[genre["id"]] = genre["name"]
+    return genre_dict
