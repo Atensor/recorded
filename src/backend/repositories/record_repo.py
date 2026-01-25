@@ -12,7 +12,20 @@ def read_record_list():
         label_id
     from
         records
-    order by date desc
+    order by title
+    """).fetchall()
+
+
+def read_record_list_min():
+    con = get_connection()
+    return con.execute("""
+    select
+        id,
+        title,
+        artist_id
+    from
+        records
+    order by title
     """).fetchall()
 
 
@@ -32,6 +45,20 @@ def read_record(id: int):
     """, [id]).fetchone()
 
 
+def read_record_min(id: int):
+    con = get_connection()
+    return con.execute("""
+    select
+        id,
+        title,
+        artist_id
+    from
+        records
+    where
+        id = ?
+    """, [id]).fetchone()
+
+
 def insert_record(record):
     con = get_connection()
     return con.execute("""
@@ -40,7 +67,8 @@ def insert_record(record):
         ?,
         ?,
         ?,
-        ?
+        ?,
+        NULL
     )
     returning
         id

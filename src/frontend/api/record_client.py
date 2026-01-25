@@ -9,6 +9,10 @@ def get_record(id: int):
     return get(f"/records/{id}")
 
 
+def get_records_min():
+    return get(f"/records/min")
+
+
 def post_record(payload):
     print(payload)
     record = post("/records/", payload).json()

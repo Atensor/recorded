@@ -1,4 +1,5 @@
 from state.track_state import TrackFormState
+from state.artist_state import ArtistState as Artist
 
 
 class RecordFormState:
@@ -41,3 +42,24 @@ class RecordFormState:
             self.genre_ids and
             tracks_valid
         )
+
+
+class RecordMinState:
+    id: int | None
+    title: str | None
+    artist: Artist | None
+
+    def __init__(self):
+        self.id = None
+        self.title = None
+        self.artist = Artist({"id": None, "name": None})
+
+    def to_payload(self):
+        return {
+            "id": self.id,
+            "title": self.title,
+            "artist": self.artist.to_payload()
+        }
+
+    def is_valid(self) -> bool:
+        return bool(self.id and self.title and self.artist.is_valid())

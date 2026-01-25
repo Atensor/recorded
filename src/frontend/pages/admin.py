@@ -1,6 +1,6 @@
 import json
 from nicegui import ui
-from components import header, record_form, artist_form, genre_form, label_form
+from components import header, record_form, artist_form, genre_form, label_form, cover_art_form
 
 
 def page():
@@ -15,6 +15,7 @@ def page():
                     genre = ui.tab('Genre')
                     artist = ui.tab('Artist')
                     label = ui.tab('Label')
+                    cover_art = ui.tab('Cover Artwork')
             with splitter.after:
                 with ui.tab_panels(tabs, value=record).props('vertical').classes('w-full h-full'):
                     with ui.tab_panel(record):
@@ -29,3 +30,6 @@ def page():
                     with ui.tab_panel(label):
                         label_state = label_form.LabelFormState()
                         label_form.label_form(label_state)
+                    with ui.tab_panel(cover_art):
+                        cover_art_state = cover_art_form.RecordMinState()
+                        cover_art_form.cover_art_form(cover_art_state)
