@@ -4,16 +4,17 @@ from models.artist import ArtistRead as Artist
 
 class TrackBase(BaseModel):
     title: str
-    tracknr: int
-    feature_ids: list[int]
+    track_nr: int
+    duration: int
 
 
 class TrackCreate(TrackBase):
-    record_id: int
+    feature_ids: list[int]
 
 
 class TrackRead(TrackBase):
     id: int
+    features: list[Artist]
 
     class config:
         from_attributes = True

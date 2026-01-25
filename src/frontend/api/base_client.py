@@ -8,4 +8,4 @@ def get(path: str):
 
 
 def post(path: str, json):
-    return requests.post(BASE_URL + path, json=json).json
+    return requests.post(BASE_URL + path, json=json)

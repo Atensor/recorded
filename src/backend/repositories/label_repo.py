@@ -10,26 +10,28 @@ def read_labels():
         name
     from
         labels
+    order by
+        name
     """).fetchall()
 
 
 def read_label(id: int):
     con = get_connection()
-    return con.execute(f"""
+    return con.execute("""
     select
         id,
         name
     from
         labels
     where
-        id = {id}
-    """).fetchone()
+        id = ?
+    """, [id]).fetchone()
 
 
 def insert_label(label: Label):
     con = get_connection()
-    con.execute(f"""
+    con.execute("""
     insert into labels values(
         nextval('seq_lid'),
-        '{label.name}'
-    )""")
+        ?
+    )""", [label.name])

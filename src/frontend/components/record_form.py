@@ -9,6 +9,8 @@ from api.genre_client import get_genres
 
 
 def record_form(record: RecordFormState):
+    artists = get_artists()
+
     ui.label('Record').classes('text-h4')
     ui.input(label="Title",
              placeholder="enter title",
@@ -21,7 +23,7 @@ def record_form(record: RecordFormState):
                   setattr(record, "date", e.value) or
                   update_save_button())
     ui.select(
-        {a["id"]: a["name"] for a in get_artists()},
+        {a["id"]: a["name"] for a in artists},
         label="Select Artist",
         on_change=lambda e:
             setattr(record, "artist_id", e.value) or
@@ -64,7 +66,7 @@ def record_form(record: RecordFormState):
         track_container.clear()
         with track_container:
             for track in record.tracks:
-                track_form(track, update_save_button)
+                track_form(track, update_save_button, artists)
 
     update_tracks(9)
 

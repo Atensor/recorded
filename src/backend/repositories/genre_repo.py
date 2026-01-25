@@ -10,12 +10,14 @@ def read_genres():
         name
     from
         genres
+    order by
+        name
     """).fetchall()
 
 
 def read_record_genres(record_id: int):
     con = get_connection()
-    return con.execute(f"""
+    return con.execute("""
     select
         genres.id,
         genres.name
@@ -26,14 +28,23 @@ def read_record_genres(record_id: int):
     on
         genres.id = record_genres.genre_id
     where
-        record_genres.record_id = {record_id}
-    """).fetchall()
+        record_genres.record_id = ?
+    """, [record_id]).fetchall()
 
 
 def insert_genre(genre: Genre):
     con = get_connection()
-    con.execute(f"""
+    con.execute("""
     insert into genres values(
         nextval('seq_gid'),
-        '{genre.name}'
-    )""")
+        ?
+    )""", [genre.name])
+
+
+def add_record_genres(record_id: int, genre_ids: list[int]):
+    con = get_connection()
+    return con.executemany("""
+    insert into record_genres values (
+        ?,
+        ?
+    )""", [(record_id, genre_id) for genre_id in genre_ids])

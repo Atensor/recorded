@@ -1,7 +1,8 @@
+from models.label import LabelCreate, LabelRead
 from repositories.label_repo import read_labels, read_label, insert_label
 
 
-def get_labels():
+def get_labels_service() -> list[LabelRead]:
     rows = read_labels()
     return [
         {
@@ -11,7 +12,7 @@ def get_labels():
     ]
 
 
-def get_label(id: int):
+def get_label_service(id: int) -> LabelRead:
     row = read_label(id)
     return {
         "id": row[0],
@@ -19,5 +20,5 @@ def get_label(id: int):
     }
 
 
-def create_label(label):
+def create_label_service(label: LabelCreate):
     insert_label(label)

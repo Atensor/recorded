@@ -4,13 +4,13 @@ from db.database import get_connection
 def read_record_list():
     con = get_connection()
     return con.execute("""
-    select 
-        id, 
-        title, 
-        date, 
-        artist_id, 
+    select
+        id,
+        title,
+        date,
+        artist_id,
         label_id
-    from 
+    from
         records
     order by date desc
     """).fetchall()
@@ -18,39 +18,51 @@ def read_record_list():
 
 def read_record(id: int):
     con = get_connection()
-    return con.execute(f"""
+    return con.execute("""
     select
-        id, 
-        title, 
-        date, 
-        artist_id, 
+        id,
+        title,
+        date,
+        artist_id,
         label_id
-    from 
+    from
         records
     where
-        id = {id}
-    """).fetchone()
+        id = ?
+    """, [id]).fetchone()
 
 
 def insert_record(record):
     con = get_connection()
-    return con.execute(f"""
+    return con.execute("""
     insert into records values (
-        nextval('seq_rid'), 
-        '{record.title}', 
-        {record.artist_id}, 
-        {record.label_id}, 
-        '{record.date}'
+        nextval('seq_rid'),
+        ?,
+        ?,
+        ?,
+        ?
     )
     returning
         id
-    """).fetchone()
+    """, [
+        record.title,
+        record.artist_id,
+        record.label_id,
+        record.date
+    ]).fetchone()
 
 
-def add_record_genre(record_id: int, genre_id: int):
+def remove_record(id: int):
     con = get_connection()
-    return con.execute(f"""
-    insert into record_genres values (
-        {record_id},
-        {genre_id}
-    )""")
+    con.execute("""
+    delete from
+        record_genres
+    where
+        record_id = ?;
+    """, [id])
+    con.execute("""
+    delete from
+        records
+    where
+        id = ?
+    """, [id])

@@ -1,34 +1,34 @@
 create table artists (
     id integer primary key,
-    name varchar
+    name varchar not null
 );
 create or replace sequence seq_aid start 1;
 
 create table labels (
     id integer primary key,
-    name varchar
+    name varchar not null
 );
 create or replace sequence seq_lid start 1;
 
 create table genres (
     id integer primary key,
-    name varchar
+    name varchar not null
 );
 create or replace sequence seq_gid start 1;
 
 create table users (
     id integer primary key,
-    username varchar unique,
-    password_hash varchar
+    username varchar unique not null,
+    password_hash varchar not null
 );
 create or replace sequence seq_uid start 1;
 
 create table records (
     id integer primary key,
-    title varchar,
-    artist_id integer,
-    label_id integer,
-    date date,
+    title varchar not null,
+    artist_id integer not null,
+    label_id integer not null,
+    date date not null,
     foreign key(artist_id) references artists(id),
     foreign key(label_id) references labels(id)
 );
@@ -36,9 +36,10 @@ create or replace sequence seq_rid start 1;
 
 create table tracks (
     id integer primary key,
-    title varchar,
-    record_id integer,
-    track_nr integer,
+    title varchar not null,
+    record_id integer  not null,
+    track_nr integer not null,
+    duration integer not null,
     foreign key(record_id) references records(id)
 );
 create or replace sequence seq_tid start 1;
@@ -77,7 +78,7 @@ create table track_features (
 create table record_ratings (
     record_id integer,
     user_id integer,
-    rating integer,
+    rating integer not null,
     primary key(record_id, user_id),
     foreign key(record_id) references records(id),
     foreign key(user_id) references users(id)
@@ -86,7 +87,7 @@ create table record_ratings (
 create table track_ratings (
     track_id integer,
     user_id integer,
-    rating integer,
+    rating integer not null,
     primary key(track_id, user_id),
     foreign key(track_id) references tracks(id),
     foreign key(user_id) references users(id)

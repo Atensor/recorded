@@ -4,40 +4,97 @@ from models.track import TrackCreate
 
 def read_record_tracks(record_id: int):
     con = get_connection()
-    return con.execute(f"""
+    return con.execute("""
     select
         id, 
         title,
-        record_id,
-        track_nr
+        track_nr,
+        duration
     from 
         tracks
     where
-        record_id = {record_id}
-    order by track_nr desc
-    """).fetchall()
+        record_id = ?
+    order by track_nr
+    """, [record_id]).fetchall()
 
 
 def read_track(id: int):
     con = get_connection()
-    return con.execute(f"""
+    return con.execute("""
     select
         id, 
         title, 
-        record_id
+        record_id,
+        track_nr,
+        duration
     from
         tracks
     where
-        id = {id}
-    """).fetchone()
+        id = ?
+    """, [id]).fetchone()
 
 
-def write_track(track: TrackCreate, record_id: int):
+def read_track(name: str):
     con = get_connection()
-    con.execute(f"""
-    insert into tracks values(
+    return con.execute("""
+    select
+        id, 
+        title, 
+        record_id,
+        track_nr,
+        duration
+    from
+        tracks
+    where
+        title = ?
+    """, [name]).fetchone()
+
+
+def write_record_track(track: TrackCreate, record_id):
+    con = get_connection()
+    return con.execute("""
+    insert into tracks values (
         nextval('seq_tid'),
-        '{track.title}',
-        {record_id},
-        {track.tracknr}
-    """)
+        ?,
+        ?,
+        ?,
+        ?
+    )
+    returning
+        id,
+        track_nr
+    """, [track.title, record_id, track.track_nr, track.duration]).fetchone()
+
+
+def delete_record_tracks(record_id: int):
+    con = get_connection()
+    con.execute("""
+    delete from
+        lyrics
+    using
+        lyrics 
+    join 
+        tracks
+    on
+        lyrics.track_id = tracks.id
+    where
+        tracks.record_id = ?;
+    """, [record_id])
+    con.execute("""
+    delete from
+        track_features
+    using
+        track_features
+    join
+        tracks
+    on
+        track_features.track_id = tracks.id
+    where
+        tracks.record_id = ?;
+    """, [record_id])
+    con.execute("""
+    delete from
+        tracks
+    where
+        record_id = ?;
+    """, [record_id])
