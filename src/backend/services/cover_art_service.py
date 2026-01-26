@@ -16,9 +16,9 @@ BASE_PATH = "/home/bent/.local/share/recorded/cover_art/"
 def get_cover_art_service(record_id: int) -> FileResponse:
     row = read_art_path(record_id)
     return FileResponse(
-        path=Path(row[0]),
+        path=row[0],
         media_type="image/png",
-        filename=record_id)
+        filename=row[0].split("/")[7])
 
 
 def add_art(record_id: int, content: UploadFile, filename: str):
