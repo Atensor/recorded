@@ -4,8 +4,7 @@ from fastapi.responses import FileResponse
 from models.record import RecordRead, RecordTracksRead, RecordCreate, RecordReadMin
 from models.cover_art import CoverArtCreate
 from services.record_service import get_record_service, get_records_service, get_records_min_service, insert_record_service, delete_record_service
-from services.cover_art_service import add_art, get_cover_art_service
-
+from services.cover_art_service import add_art_service
 
 router = APIRouter(
     prefix="/records",
@@ -38,13 +37,8 @@ def delete_record(id: int):
     delete_record_service(id)
 
 
-@router.get("/{record_id}/art")
-def get_cover_art(record_id: int) -> FileResponse:
-    return get_cover_art_service(record_id)
-
-
 @router.put("/{record_id}/art")
 async def put_cover_art(record_id: int, file: UploadFile = File(...)):
     content = await file.read()
     filename = file.filename
-    add_art(record_id, content, filename)
+    add_art_service(record_id, content, filename)

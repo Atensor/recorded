@@ -1,8 +1,8 @@
-from api.base_client import get_file, put_file
+from api.base_client import put_file, BASE_URL
 
 
-def get_cover_art(record_id: int):
-    return get_file(f"/records/{record_id}/art")
+def get_cover_art_link(artist: str, title: str):
+    return BASE_URL + f"/cover_art/{artist}/{title}.jpeg"
 
 
 def put_cover_art(record_id: int, files):

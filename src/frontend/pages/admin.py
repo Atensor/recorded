@@ -12,8 +12,8 @@ def page():
             with splitter.before:
                 with ui.tabs().props('vertical').classes('w-full') as tabs:
                     record = ui.tab('Record')
-                    genre = ui.tab('Genre')
                     artist = ui.tab('Artist')
+                    genre = ui.tab('Genre')
                     label = ui.tab('Label')
                     cover_art = ui.tab('Cover Artwork')
             with splitter.after:
@@ -21,12 +21,12 @@ def page():
                     with ui.tab_panel(record):
                         record_state = record_form.RecordFormState()
                         record_form.record_form(record_state)
-                    with ui.tab_panel(genre):
-                        genre_state = genre_form.GenreFormState()
-                        genre_form.genre_form(genre_state)
                     with ui.tab_panel(artist):
                         artist_state = artist_form.ArtistFormState()
                         artist_form.artist_form(artist_state)
+                    with ui.tab_panel(genre):
+                        genre_state = genre_form.GenreFormState()
+                        genre_form.genre_form(genre_state)
                     with ui.tab_panel(label):
                         label_state = label_form.LabelFormState()
                         label_form.label_form(label_state)

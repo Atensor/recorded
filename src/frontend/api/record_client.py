@@ -14,5 +14,4 @@ def get_records_min():
 
 
 def post_record(payload):
-    print(payload)
     record = post("/records/", payload).json()

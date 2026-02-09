@@ -35,8 +35,8 @@ def cover_art_form(record_state: RecordMinState):
 
     ui.upload(
         on_upload=handle_upload,
-        max_file_size=2_300_000,
-        auto_upload=True,
+        max_file_size=50_000_000,
+        auto_upload=True
     ).classes("max-w-full")
 
     def update_save_button():
@@ -48,7 +48,7 @@ def cover_art_form(record_state: RecordMinState):
     save_button = ui.button(
         "Save",
         on_click=lambda:
-        put_cover_art(record_state.id, get_files().text) or
+        put_cover_art(record_state.id, get_files()) or
         update_save_button()
     )
 
