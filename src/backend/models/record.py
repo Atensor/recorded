@@ -33,3 +33,9 @@ class RecordTracksRead(RecordRead):
 
     class config:
         from_attributes = True
+
+
+class RecordReadMin(BaseModel):
+    id: int
+    title: str
+    artist: Artist

@@ -29,6 +29,7 @@ create table records (
     artist_id integer not null,
     label_id integer not null,
     date date not null,
+    art_path varchar,
     foreign key(artist_id) references artists(id),
     foreign key(label_id) references labels(id)
 );

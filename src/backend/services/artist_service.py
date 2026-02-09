@@ -22,7 +22,6 @@ def get_artist_service(id: int) -> ArtistRead:
 
 def get_track_features_service(track_id: int) -> list[ArtistRead]:
     rows = read_track_features(track_id)
-    print(rows)
     return [
         {
             "id": row[0],
