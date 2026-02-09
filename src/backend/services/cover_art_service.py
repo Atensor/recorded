@@ -1,8 +1,7 @@
 from platform import system
-from os.path import expanduser, basename
+from os.path import expanduser
 from os import makedirs
 from fastapi import UploadFile
-from fastapi.responses import FileResponse
 from pathlib import Path
 from models.cover_art import CoverArtCreate
 from repositories.cover_art_repo import add_art_path

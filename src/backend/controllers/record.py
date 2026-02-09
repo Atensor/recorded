@@ -1,6 +1,5 @@
 from fastapi import APIRouter, UploadFile, File, Form
 from json import loads
-from fastapi.responses import FileResponse
 from models.record import RecordRead, RecordTracksRead, RecordCreate, RecordReadMin
 from models.cover_art import CoverArtCreate
 from services.record_service import get_record_service, get_records_service, get_records_min_service, insert_record_service, delete_record_service

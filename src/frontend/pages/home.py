@@ -1,6 +1,5 @@
 from nicegui import ui
 import json
-import base64
 from datetime import date
 from components.header import header
 from api.record_client import get_records
