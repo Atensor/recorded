@@ -58,6 +58,21 @@ def read_record_min(id: int):
         id = ?
     """, [id]).fetchone()
 
+def read_artist_records(artist_id: int):
+    con = get_connection()
+    return con.execute("""
+    select
+        id,
+        title,
+        date,
+        artist_id,
+        label_id
+    from
+        records
+    where
+        artist_id = ?
+    """, [artist_id]).fetchall()
+
 
 def insert_record(record):
     con = get_connection()

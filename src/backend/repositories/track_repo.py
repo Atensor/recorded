@@ -34,20 +34,16 @@ def read_track(id: int):
     """, [id]).fetchone()
 
 
-def read_track(name: str):
+def read_track_record(id: int):
     con = get_connection()
     return con.execute("""
     select
-        id, 
-        title, 
-        record_id,
-        track_nr,
-        duration
+        record_id
     from
         tracks
     where
-        title = ?
-    """, [name]).fetchone()
+        id = ?
+    """, [id]).fetchone()
 
 
 def write_record_track(track: TrackCreate, record_id):

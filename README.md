@@ -2,12 +2,6 @@
 This will be a Website to track and organize a Music Collection.
 
 # TODO
-- Add Cover Art for Records
-- Add Pages for:
-    - Tracks
-    - Artists
-    - Labels
-    - Genres
 - Add Users:
     - User controller, service ans repo
     - Auth service

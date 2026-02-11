@@ -1,7 +1,6 @@
 from fastapi import APIRouter
 from models.track import TrackRead, TrackWithLyricRead, TrackCreate
-from services.track_service import get_track_service, get_record_tracks_service
-
+from services.track_service import get_track_service
 router = APIRouter(
     prefix="/tracks",
     tags=["tracks"]
@@ -16,3 +15,8 @@ def get_record_tracks(id: int) -> list[TrackRead]:
 @router.get("/{id}")
 def track(id: int) -> TrackRead:
     return get_track_service(id)
+
+
+
+
+

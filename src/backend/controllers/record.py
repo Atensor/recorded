@@ -2,7 +2,7 @@ from fastapi import APIRouter, UploadFile, File, Form
 from json import loads
 from models.record import RecordRead, RecordTracksRead, RecordCreate, RecordReadMin
 from models.cover_art import CoverArtCreate
-from services.record_service import get_record_service, get_records_service, get_records_min_service, insert_record_service, delete_record_service
+from services.record_service import get_record_service, get_records_service, get_records_min_service, get_artist_records_service, get_track_record_service, insert_record_service, delete_record_service
 from services.cover_art_service import add_art_service
 
 router = APIRouter(
@@ -24,6 +24,14 @@ def records_min() -> list[RecordReadMin]:
 @router.get("/{id}")
 def record(id: int) -> RecordTracksRead:
     return get_record_service(id)
+
+@router.get("/artists/{artist_id}")
+def artist_records(artist_id: int) -> list[RecordRead]:
+    return get_artist_records_service(artist_id)
+
+@router.get("/tracks/{track_id}")
+def get_track_record(track_id) -> RecordRead:
+    return get_track_record_service(track_id)
 
 
 @router.post("/")

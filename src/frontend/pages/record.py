@@ -18,7 +18,7 @@ def page():
                                    for genre in record["genres"])
                 ui.restructured_text(
                     f'''**{record["title"]}**
-                            - Artist: {record["artist"]["name"]}
+                            - `Artist: {record["artist"]["name"]} <http://127.0.0.1:8080/artist/{record["artist"]["id"]}>`__
                             - Label: {record["label"]["name"]}
                             - Genres: {genres}
                             - Release Date: {record_date.day}.{record_date.month}.{record_date.year}
@@ -28,7 +28,7 @@ def page():
                             |
 
                             Tracks
-                            ''')
+                    ''').classes("no-underline text-white")
                 for track in record["tracks"]:
                     features = ", ".join(feature["name"]
                                          for feature in track["features"])
