@@ -1,5 +1,5 @@
 from models.record import RecordCreate, RecordRead, RecordTracksRead, RecordReadMin
-from repositories.record_repo import read_record, insert_record, read_record_list, read_record_min, read_record_list_min, read_artist_records, remove_record
+from repositories.record_repo import read_record, insert_record, read_record_list, read_record_min, read_record_list_min, read_artist_records, read_label_records, read_genre_records, remove_record
 from services.track_service import get_track_record_id_service, delete_record_tracks_service, create_record_tracks_service
 
 
@@ -34,9 +34,24 @@ def get_artist_records_service(artist_id: int) -> list[RecordRead]:
     ]
 
 
+def get_label_records_service(label_id: int) -> list[RecordRead]:
+    rows = read_label_records(label_id)
+    return [
+        RecordRead.to_payload(row) for row in rows
+    ]
+
+
+def get_genre_records_service(genre_id: int) -> list[RecordRead]:
+    rows = read_genre_records(genre_id)
+    return [
+        RecordRead.to_payload(row) for row in rows
+    ]
+
+
 def get_track_record_service(track_id: int) -> RecordRead:
     record_id = get_track_record_id_service(track_id)
     return get_record_service(record_id)
+
 
 def insert_record_service(record: RecordCreate):
     row = insert_record(record)

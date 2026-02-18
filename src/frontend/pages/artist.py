@@ -5,16 +5,18 @@ from api.artist_client import get_artist
 from api.record_client import get_artist_records
 
 
-
 def page():
     @ui.page("/artist/{id}")
-    def artist(id:int):
+    def artist(id: int):
         header()
 
         artist = get_artist(id)
-        
+
+        if artist is None:
+            ui.label("Artist not Found").classes("text-2xl")
+            return
+
         ui.label("Records by " + artist["name"]).classes("h-1")
-        
+
         for record in get_artist_records(id):
             record_card(record)
-        

@@ -32,6 +32,19 @@ def read_record_genres(record_id: int):
     """, [record_id]).fetchall()
 
 
+def read_genre(id: int):
+    con = get_connection()
+    return con.execute("""
+    select
+        id,
+        name
+    from
+        genres
+    where
+        id = ?
+    """, [id]).fetchone()
+
+
 def insert_genre(genre: Genre):
     con = get_connection()
     con.execute("""

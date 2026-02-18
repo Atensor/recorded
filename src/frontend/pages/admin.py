@@ -9,6 +9,7 @@ def page():
         header.header()
 
         with ui.splitter(value=30).classes('w-full') as splitter:
+            splitter.style("background: #2F3136;")
             with splitter.before:
                 with ui.tabs().props('vertical').classes('w-full') as tabs:
                     record = ui.tab('Record')

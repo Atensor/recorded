@@ -24,9 +24,9 @@ def read_track(id: int):
     select
         id, 
         title, 
-        record_id,
         track_nr,
-        duration
+        duration,
+        record_id
     from
         tracks
     where

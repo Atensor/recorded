@@ -5,28 +5,19 @@ from repositories.artist_repo import write_artist, read_artist, read_artists, re
 def get_artists_service() -> list[ArtistRead]:
     rows = read_artists()
     return [
-        {
-            "id": row[0],
-            "name": row[1]
-        } for row in rows
+        ArtistRead.to_payload(row) for row in rows
     ]
 
 
 def get_artist_service(id: int) -> ArtistRead:
     row = read_artist(id)
-    return {
-        "id": row[0],
-        "name": row[1]
-    }
+    return ArtistRead.to_payload(row)
 
 
 def get_track_features_service(track_id: int) -> list[ArtistRead]:
     rows = read_track_features(track_id)
     return [
-        {
-            "id": row[0],
-            "name": row[1]
-        } for row in rows
+        ArtistRead.to_payload(row) for row in rows
     ]
 
 

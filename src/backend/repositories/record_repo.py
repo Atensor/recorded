@@ -58,6 +58,7 @@ def read_record_min(id: int):
         id = ?
     """, [id]).fetchone()
 
+
 def read_artist_records(artist_id: int):
     con = get_connection()
     return con.execute("""
@@ -72,6 +73,42 @@ def read_artist_records(artist_id: int):
     where
         artist_id = ?
     """, [artist_id]).fetchall()
+
+
+def read_label_records(label_id: int):
+    con = get_connection()
+    return con.execute("""
+    select
+        id,
+        title,
+        date,
+        artist_id,
+        label_id
+    from
+        records
+    where
+        label_id = ?
+    """, [label_id]).fetchall()
+
+
+def read_genre_records(genre_id: int):
+    con = get_connection()
+    return con.execute("""
+    select
+        id,
+        title,
+        date,
+        artist_id,
+        label_id
+    from
+        records
+    join
+        record_genres
+    on
+        records.id = record_genres.record_id
+    where
+        record_genres.genre_id = ?
+    """, [genre_id]).fetchall()
 
 
 def insert_record(record):

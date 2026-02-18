@@ -10,9 +10,7 @@ def page():
     @ui.page("/")
     def home():
         header()
-        ui.link(text="Admin Panel", target=("/admin"))  # TEMP
+        ui.link(text="Admin Panel", target=("/admin")
+                ).classes("clean-link")  # TEMP
         for record in get_records():
             record_card(record)
-
-
-

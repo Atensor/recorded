@@ -14,3 +14,9 @@ class LabelRead(LabelBase):
 
     class config:
         from_attributes = True
+
+    def to_payload(row) -> LabelRead:
+        return {
+            "id": row[0],
+            "name": row[1]
+        }

@@ -14,3 +14,9 @@ class GenreRead(GenreBase):
 
     class config:
         from_attributes = True
+
+    def to_payload(row) -> GenreRead:
+        return {
+            "id": row[0],
+            "name": row[1]
+        }

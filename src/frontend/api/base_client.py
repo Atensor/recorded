@@ -4,7 +4,10 @@ BASE_URL = "http://localhost:8000"
 
 
 def get(path: str):
-    return requests.get(BASE_URL + path).json()
+    try:
+        return requests.get(BASE_URL + path).json()
+    except:
+        return None
 
 
 def post(path: str, json):
