@@ -1,5 +1,4 @@
 from pydantic import BaseModel
-from models.rating import TrackRatingBase, RecordRatingBase as TrackRating, RecordRating
 
 
 class UserBase(BaseModel):
@@ -7,7 +6,7 @@ class UserBase(BaseModel):
 
 
 class UserCreate(UserBase):
-    password_hash: str
+    password: str
 
 
 class UserRead(UserBase):
@@ -15,3 +14,20 @@ class UserRead(UserBase):
 
     class config:
         from_attributes = True
+
+    def to_payload(row):
+        return {
+            "id": row[0],
+            "username": row[1]
+        }
+
+
+class UserReadDB(UserRead):
+    password_hash: str
+
+    def to_payload(row):
+        return {
+            "id": row[0],
+            "username": row[1],
+            "password_hash": row[2]
+        }

@@ -1,4 +1,5 @@
 from db.database import get_connection
+from models.record import RecordCreate
 
 
 def read_record_list():
@@ -111,7 +112,7 @@ def read_genre_records(genre_id: int):
     """, [genre_id]).fetchall()
 
 
-def insert_record(record):
+def insert_record(record: RecordCreate):
     con = get_connection()
     return con.execute("""
     insert into records values (
