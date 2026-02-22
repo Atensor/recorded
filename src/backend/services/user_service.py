@@ -17,7 +17,9 @@ def get_user_service(id: int) -> UserRead:
 
 def get_user_by_name_service(username: str) -> UserRead:
     row = read_user_by_name(username)
-    return UserRead.to_payload(row)
+    if row is None:
+        return UserRead(id=-1, username="")
+    return UserRead(**UserRead.to_payload(row))
 
 
 def get_user_db_service(username: str) -> UserReadDB or None:

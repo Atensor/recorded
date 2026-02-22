@@ -1,5 +1,6 @@
 from nicegui import ui
-from pages import home, record, track, admin, artist, label, genre
+from config import get_storage_secret_key
+from pages import home, record, track, admin, artist, label, genre, login
 
 
 ui.add_css('''
@@ -46,5 +47,6 @@ artist.page()
 track.page()
 label.page()
 genre.page()
+login.page()
 
-ui.run()
+ui.run(show=False, storage_secret=get_storage_secret_key())

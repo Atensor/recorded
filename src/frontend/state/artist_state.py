@@ -4,7 +4,7 @@ class ArtistFormState:
     def __init__(self):
         self.name = None
 
-    def to_payload(self):
+    def to_payload(self) -> dict:
         return {
             "name": self.name
         }
