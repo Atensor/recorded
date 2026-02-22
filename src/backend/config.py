@@ -1,14 +1,16 @@
-from os import getenv
-from secrets import token_hex
+from dotenv import get_key
 
 ENVIRONMENT_VARIABLE = "OAUTH_SECRET_KEY"
 
+ERROR_TEXT = f'''{ENVIRONMENT_VARIABLE} needs to be set
+to do so run this command:
+export {ENVIRONMENT_VARIABLE}=$(openssl rand -hex 32)'''
+
 
 def get_oath_secret_key() -> str:
-    key = getenv(ENVIRONMENT_VARIABLE)
+    key = get_key(dotenv_path=".env", key_to_get=ENVIRONMENT_VARIABLE)
 
-    # If no key is set a temporary key is generated
-    if key is None:
-        key = token_hex(32)
-        print("No Global Key is set")
-    return key
+    if key:
+        return key
+
+    raise RuntimeError(ERROR_TEXT)
