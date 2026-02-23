@@ -141,6 +141,12 @@ def remove_record(id: int):
     where
         record_id = ?;
     """, [id])
+    con.execute('''
+    delete from
+        user_records
+    where
+        record_id = ?
+    ''', [id])
     con.execute("""
     delete from
         records

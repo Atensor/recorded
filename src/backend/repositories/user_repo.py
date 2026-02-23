@@ -45,7 +45,8 @@ def read_user_db(username: str):
     select
         id,
         username,
-        password_hash
+        password_hash,
+        role
     from
         users
     where
@@ -57,9 +58,10 @@ def insert_user(user: UserCreate):
     con = get_connection()
     con.execute('''
     insert into users values (
-        nextval('seq-uid'),
+        nextval('seq_uid'),
         ?,
-        ?
+        ?,
+        'user'
     )
     ''', [user.username, user.password])
 
@@ -87,3 +89,15 @@ def update_username(id: int, username: str):
     where
         id = ?
     ''', [username, id])
+
+
+def update_role(id: int, role: str):
+    con = get_connection()
+    con.execute('''
+    update
+        users
+    set
+        role = ?
+    where
+        id = ?
+    ''', [role, id])

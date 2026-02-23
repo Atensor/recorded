@@ -1,7 +1,9 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException, status
 from models.user import UserRead, UserCreate
+from models.user_records import User_RecordBase
 from services.auth_service import get_current_user
-from services.user_service import get_users_service, get_user_service, get_user_by_name_service, create_user_service, change_username_service, change_password_service
+from services.user_service import get_users_service, get_user_service, get_user_by_name_service, get_record_users_service, create_user_service, change_username_service, change_password_service, change_role_service, is_admin, is_elevated
+from services.user_record_service import get_user_records_service, add_record_tag_service, delete_record_tag_service
 
 
 router = APIRouter(
@@ -32,9 +34,35 @@ def user_exists(username: str):
     return True
 
 
+@router.get("/records/tags")
+async def get_my_record_tags(current_user: UserRead = Depends(get_current_user)) -> list[User_RecordBase]:
+    return get_user_records_service(current_user.id)
+
+
+@router.get("/records/{record_id}")
+def get_record_users(record_id) -> list[UserRead]:
+    return get_record_users_service(record_id)
+
+
 @router.post("/")
 def post_user(user: UserCreate):
     return create_user_service(user)
+
+
+@router.post("/records/{record_id}/tags")
+async def post_record_tag(record_id: int, current_user: UserRead = Depends(get_current_user), tag: str = ""):
+    if tag == "":
+        raise HTTPException(status_code=status.HTTP_422_UNPROCESSABLE_CONTENT, detail={
+                            "type": "missing", "loc": ["body", "tag"], "msg": "Field Required"})
+    return add_record_tag_service(User_RecordBase(**{"record_id": record_id, "user_id": current_user.id, "tag": tag}))
+
+
+@router.delete("/records/{record_id}/tags/")
+async def delete_record_tag(record_id: int, current_user: UserRead = Depends(get_current_user), tag: str = None):
+    if tag is None:
+        raise HTTPException(status_code=status.HTTP_422_UNPROCESSABLE_CONTENT, detail={
+                            "type": "missing", "loc": ["body", "tag"], "msg": "Field Required"})
+    return delete_record_tag_service(User_RecordBase(**{"record_id": record_id, "user_id": current_user.id, "tag": tag}))
 
 
 # TODO: get new Token after name Change, throw exeption for invalid name
@@ -50,3 +78,12 @@ async def put_password(current_user: UserRead = Depends(get_current_user), passw
     if password is None:
         return
     return change_password_service(current_user.id, password)
+
+
+@router.put("/{user_id}/role")
+async def put_role(current_user: UserRead = Depends(get_current_user), user_id: int = 0, role: str = ""):
+    if is_admin(current_user.username):
+        change_role_service(user_id, role)
+    else:
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,
+                            headers={"WWW-Authenticate": "Bearer"})

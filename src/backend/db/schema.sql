@@ -19,7 +19,8 @@ create or replace sequence seq_gid start 1;
 create table users (
     id integer primary key,
     username varchar unique not null,
-    password_hash varchar not null
+    password_hash varchar not null,
+    role varchar check (role in ('admin', 'moderator', 'user')) 
 );
 create or replace sequence seq_uid start 1;
 
@@ -54,8 +55,8 @@ create table lyrics (
 create table user_records (
     user_id integer,
     record_id integer,
-    state varchar check (state in ('physical', 'digital', 'wanted', 'favourite')),
-    primary key(user_id, record_id),
+    tag varchar check (tag in ('physical', 'digital', 'wanted', 'favourite')),
+    primary key(user_id, record_id, tag),
     foreign key(user_id) references users(id),
     foreign key(record_id) references records(id)
 );

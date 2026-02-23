@@ -1,6 +1,6 @@
 from models.track import TrackCreate, TrackRead
 from repositories.track_repo import read_record_tracks, read_track, read_track_record, write_record_track, delete_record_tracks
-from services.artist_service import add_track_features
+from services.artist_service import add_track_features_service
 
 
 def get_record_tracks_service(record_id: int) -> list[TrackRead]:
