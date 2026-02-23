@@ -32,6 +32,11 @@ def user_form_card(user: UserFormState, top_label: str, api_request: Callable[[U
                     value) else PASSWORD_REQUIREMENTS
             )
 
+            ui.link(
+                text="Sign Up" if top_label == "Sign In" else "Sign In",
+                target=f"/login/{"signup" if top_label == "Sign In" else "signin"}",
+            )
+
             button = ui.button(
                 top_label,
                 on_click=lambda: handle_submit()

@@ -6,9 +6,16 @@ from api.auth_client import post_token
 
 
 def page():
-    @ui.page("/login")
+    @ui.page("/login/signin")
     def login():
         header.header()
         user_state = UserFormState()
 
         user_form.user_form_card(user_state, "Sign In", post_token)
+
+    @ui.page("/login/signup")
+    def signup():
+        header.header()
+        user_state = UserFormState()
+
+        user_form.user_form_card(user_state, "Sign Up", post_user)

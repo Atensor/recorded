@@ -7,4 +7,4 @@ def header():
         ui.link("recorded", "/").classes("clean-link-header text-5xl font-bold")
         with ui.row().style("margin-top: auto; margin-bottom: auto;"):
             ui.link("about", "/about").classes("clean-link-header text-xl")
-            ui.link("Log In", "/login").classes("clean-link-header text-xl")
+            ui.link("Log In", "/login/signin").classes("clean-link-header text-xl")
