@@ -1,6 +1,6 @@
 from models.user_records import User_RecordBase
 from models.rating import RecordRatingBase
-from repositories.user_record_repo import read_record_users, read_user_record_ids, read_user_records, insert_user_record, delete_user_record
+from repositories.user_record_repo import read_record_users, read_user_record_ids, read_user_records, read_user_record, insert_user_record, delete_user_record
 
 
 def get_record_user_ids_service(record_id: int) -> list[int]:
@@ -15,6 +15,13 @@ def get_user_records_service(user_id: int) -> list[User_RecordBase]:
     rows = read_user_records(user_id)
     return [
         User_RecordBase(**User_RecordBase.to_payload(row)) for row in rows
+    ]
+
+
+def get_user_record_tags_service(user_id: int, record_id: int) -> list[User_RecordBase]:
+    rows = read_user_record(user_id, record_id)
+    return [
+        User_RecordBase.to_payload(row) for row in rows
     ]
 
 

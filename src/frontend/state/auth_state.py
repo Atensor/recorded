@@ -18,7 +18,10 @@ def set_token(token: TokenState):
 
 
 def get_token() -> TokenState | None:
-    return TokenState(**app.storage.user.get("token"))
+    token = app.storage.user.get("token")
+    if token is None:
+        return None
+    return TokenState(token)
 
 
 def clear_token():

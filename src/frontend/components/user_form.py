@@ -72,4 +72,5 @@ def user_form_card(user: UserFormState, top_label: str, api_request: Callable[[U
                         button.props('error=false')
                         ui.navigate.back()
                     else:
-                        button.props('error error-message="Unauthorized"')
+                        username_input.props(
+                            'error error-message="Worng Username or Password"')

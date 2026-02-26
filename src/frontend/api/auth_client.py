@@ -4,7 +4,7 @@ from state.auth_state import TokenState, set_token, get_token
 
 
 def get_with_auth(path: str):
-    token = TokenState(get_token())
+    token = get_token()
 
     headers = {}
     if token:
@@ -13,14 +13,34 @@ def get_with_auth(path: str):
     return requests.get(BASE_URL + path, headers=headers)
 
 
-def put_with_auth(path: str, json):
-    token = TokenState(get_token())
+def post_with_auth(path: str, json: dict | None = None, params: str | None = None):
+    token = get_token()
 
     headers = {}
     if token:
         headers.update(get_header(token))
 
-    return requests.put(BASE_URL + path, json=json)
+    return requests.post(BASE_URL + path, json=json, headers=headers, params=params)
+
+
+def put_with_auth(path: str, json: dict | None = None, params: str | None = None):
+    token = get_token()
+
+    headers = {}
+    if token:
+        headers.update(get_header(token))
+
+    return requests.put(BASE_URL + path, json=json, headers=headers, params=params)
+
+
+def delete_with_auth(path: str, json: dict | None = None, params: str | None = None):
+    token = get_token()
+
+    headers = {}
+    if token:
+        headers.update(get_header(token))
+
+    return requests.delete(BASE_URL + path, json=json, headers=headers, params=params)
 
 
 def post_token(user: UserFormState) -> bool:

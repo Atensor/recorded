@@ -3,7 +3,7 @@ from models.user import UserRead, UserCreate
 from models.user_records import User_RecordBase
 from services.auth_service import get_current_user
 from services.user_service import get_users_service, get_user_service, get_user_by_name_service, get_record_users_service, create_user_service, change_username_service, change_password_service, change_role_service, is_admin, is_elevated
-from services.user_record_service import get_user_records_service, add_record_tag_service, delete_record_tag_service
+from services.user_record_service import get_user_records_service, get_user_record_tags_service, add_record_tag_service, delete_record_tag_service
 
 
 router = APIRouter(
@@ -34,9 +34,14 @@ def user_exists(username: str):
     return True
 
 
-@router.get("/records/tags")
-async def get_my_record_tags(current_user: UserRead = Depends(get_current_user)) -> list[User_RecordBase]:
+@router.get("/me/records/tags")
+async def get_my_records_tags(current_user: UserRead = Depends(get_current_user)) -> list[User_RecordBase]:
     return get_user_records_service(current_user.id)
+
+
+@router.get("/me/records/{record_id}/tags")
+async def get_my_record_tags(current_user: UserRead = Depends(get_current_user), record_id: int = 0) -> list[User_RecordBase]:
+    return get_user_record_tags_service(current_user.id, record_id)
 
 
 @router.get("/records/{record_id}")
@@ -49,7 +54,7 @@ def post_user(user: UserCreate):
     return create_user_service(user)
 
 
-@router.post("/records/{record_id}/tags")
+@router.post("/me/records/{record_id}/tags")
 async def post_record_tag(record_id: int, current_user: UserRead = Depends(get_current_user), tag: str = ""):
     if tag == "":
         raise HTTPException(status_code=status.HTTP_422_UNPROCESSABLE_CONTENT, detail={
@@ -57,7 +62,7 @@ async def post_record_tag(record_id: int, current_user: UserRead = Depends(get_c
     return add_record_tag_service(User_RecordBase(**{"record_id": record_id, "user_id": current_user.id, "tag": tag}))
 
 
-@router.delete("/records/{record_id}/tags/")
+@router.delete("/me/records/{record_id}/tags")
 async def delete_record_tag(record_id: int, current_user: UserRead = Depends(get_current_user), tag: str = None):
     if tag is None:
         raise HTTPException(status_code=status.HTTP_422_UNPROCESSABLE_CONTENT, detail={

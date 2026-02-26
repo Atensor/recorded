@@ -27,7 +27,7 @@ def get_user_db_service(username: str) -> UserReadDB or None:
     row = read_user_db(username)
     try:
         return UserReadDB.to_payload(row)
-    except KeyError:
+    except TypeError:
         return None
 
 

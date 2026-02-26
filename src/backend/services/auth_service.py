@@ -55,7 +55,7 @@ async def get_current_user(token: str = Depends(oauth2_scheme)) -> UserRead:
         raise credential_exeption
 
     user = get_user_by_name_service(token_data.username)
-    if user is None:
+    if user.id == -1:
         raise credential_exeption
 
     return user

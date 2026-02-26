@@ -1,8 +1,10 @@
 from nicegui import ui
 from api.cover_art_client import get_cover_art_link
+from api.user_client import post_record_tag
 
 
 def record_card(record: dict):
+
     with ui.card().on("click", lambda: ui.navigate.to(f"/record/{record["id"]}")):
         with ui.element("div").style("width: 100%"):
             with ui.row().style("width: 100%"):
