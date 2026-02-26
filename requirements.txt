@@ -1,0 +1,9 @@
+# For the Backend
+fastapi[standard]
+duckdb
+python-jose[cyptography]
+pwdlib[argon2]
+
+# For the Frontend
+nicegui
+requests
