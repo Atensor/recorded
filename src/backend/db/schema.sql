@@ -24,6 +24,19 @@ create table users (
 );
 create or replace sequence seq_uid start 1;
 
+insert into users values (
+    nextval('seq_uid'),
+    'Admin',
+    '$argon2id$v=19$m=65536,t=3,p=4$qomXHLW2pI7MFXycuQ87iA$9uJIkLls/RbQsqNuqiLLw8GBktaImABi780mAt1AgqQ'
+);
+
+update
+        users
+    set
+        role = 'admin'
+    where
+        id = 1;
+
 create table records (
     id integer primary key,
     title varchar not null,

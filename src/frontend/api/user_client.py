@@ -11,6 +11,10 @@ def get_user_me():
     return get_with_auth("/users/me")
 
 
+def get_user_me_is_elevated():
+    return get_with_auth("/users/me/is_elevated")
+
+
 def get_user(int: id):
     return get(f"/users/{id}").json()
 

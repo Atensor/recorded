@@ -3,7 +3,6 @@ from fastapi.security import OAuth2PasswordBearer
 from datetime import datetime, timedelta
 from jose import JWTError, jwt
 
-
 from config import get_oath_secret_key
 from services.user_service import get_user_by_name_service, get_user_db_service
 from services.hash_service import verify_password

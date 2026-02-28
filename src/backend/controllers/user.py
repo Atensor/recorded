@@ -22,6 +22,11 @@ async def user_me(current_user: UserRead = Depends(get_current_user)) -> UserRea
     return current_user
 
 
+@router.get("/me/is_elevated")
+async def user_me_is_elevated(current_user: UserRead = Depends(get_current_user)) -> bool:
+    return is_elevated(current_user.username)
+
+
 @router.get("/{id}")
 def user(id: int) -> UserRead:
     return get_user_service(id)
