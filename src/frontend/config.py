@@ -4,7 +4,7 @@ from pathlib import Path
 ENVIRONMENT_VARIABLE = "STORAGE_SECRET_KEY"
 
 ERROR_TEXT = f'''{ENVIRONMENT_VARIABLE} needs to be set
-to do so run this command:
+to do so run this command in PROJECT_ROOT/src/frontend:
 echo "{ENVIRONMENT_VARIABLE}=$(openssl rand -hex 32)" > .env'''
 
 
