@@ -9,7 +9,8 @@ def read_record_tracks(record_id: int):
         id, 
         title,
         track_nr,
-        duration
+        duration,
+        record_id
     from 
         tracks
     where

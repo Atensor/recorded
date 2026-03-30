@@ -12,9 +12,7 @@ def get_record_tracks_service(record_id: int) -> list[TrackRead]:
 
 def get_track_service(id: int) -> TrackRead:
     row = read_track(id)
-    track = TrackRead.to_payload(row)
-    track.record_id = row[4]
-    return row
+    return TrackRead.to_payload(row)
 
 
 def get_track_record_id_service(id: int) -> int:

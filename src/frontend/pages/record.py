@@ -41,7 +41,13 @@ def page():
 
 - Release Date: {record_date.day}.{record_date.month}.{record_date.year}''')
                 ui.markdown("---")
-                ui.markdown("**Tracks:**")
+                with ui.row(align_items="stretch"):
+                    ui.markdown("**Tracks:**").classes("w-100")
+                    total_duration = total_runtime(record["tracks"])
+                    mod_duration = total_duration % 60
+                    ui.markdown(
+                        f"{int(total_duration / 60)}:{mod_duration}")
+                ui.separator()
                 for track in record["tracks"]:
                     features = ", ".join(feature["name"]
                                          for feature in track["features"])
@@ -49,7 +55,7 @@ def page():
                     with ui.row():
                         with ui.row().classes("w-100"):
                             ui.markdown(
-                                f'{track["track_nr"]}. <a class="clean-link" href="http://127.0.0.1:8080/{track["id"]}">{track["title"]}</a>')
+                                f'{track["track_nr"]}. <a class="clean-link" href="http://127.0.0.1:8080/track/{track["id"]}">{track["title"]}</a>')
                             if len(features) > 0:
                                 ui.markdown(f"feat. {features}").style(
                                     "font-size: 12px")
@@ -73,3 +79,10 @@ def page():
                 for i in range(len(TAG_STRINGS)):
                     toggle_button.TagToggleButton(record_id=id,
                                                   state=tag_states[i], text=TAG_STRINGS[i].capitalize())
+
+
+def total_runtime(tracks: dict) -> int:
+    sum: int = 0
+    for track in tracks:
+        sum += track["duration"]
+    return sum

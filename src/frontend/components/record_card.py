@@ -7,9 +7,9 @@ def record_card(record: dict):
 
     with ui.card().on("click", lambda: ui.navigate.to(f"/record/{record["id"]}")):
         with ui.element("div").style("width: 100%"):
-            with ui.row().style("width: 100%"):
+            with ui.row(wrap=False).style("width: 100%"):
                 ui.image(get_cover_art_link(record["artist"]["name"], record["title"])).classes(
-                    "image").style("width:20%")
+                    "image").style("width:35%")
                 with ui.element("div").style("width: 100%"):
                     record_year = record["date"].split("-")[0]
                     genreList: list[str] = []

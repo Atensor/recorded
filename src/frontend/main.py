@@ -25,6 +25,9 @@ ui.add_css('''
     .clean-link-header:hover {
         filter: brightness(75%);
     }
+    [class *= "q-field__"]{
+        color: white;
+    }
     .nicegui-card{
         border-radius: 25px;
         min-width: 80%;
@@ -50,3 +53,5 @@ genre.page()
 login.page()
 
 ui.run(show=False, storage_secret=get_storage_secret_key())
+ui.colors(dark="#C0C0C0")
+ui.add_head_html('<meta name="darkreader-lock">')

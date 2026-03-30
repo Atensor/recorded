@@ -16,6 +16,7 @@ class TrackCreate(TrackBase):
 class TrackRead(TrackBase):
     id: int
     features: list[Artist]
+    record_id: int
 
     class config:
         from_attributes = True
@@ -26,7 +27,8 @@ class TrackRead(TrackBase):
             "title": row[1],
             "track_nr": row[2],
             "duration": row[3],
-            "features": get_track_features_service(row[0])
+            "features": get_track_features_service(row[0]),
+            "record_id": row[4]
         }
 
 
