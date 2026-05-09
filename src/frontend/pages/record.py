@@ -4,6 +4,7 @@ from components import header, toggle_button
 from api.record_client import get_record
 from api.cover_art_client import get_cover_art_link
 from api.user_client import get_my_record_tags, post_record_tag, delete_record_tag
+from pages import TAG_STRINGS, ACTIVE_TAG_ICONS, DISABLED_TAG_ICONS, get_tag_states
 
 
 def page():
@@ -68,17 +69,13 @@ def page():
             ui.markdown("*Sign in to Rate and Tag Records*")
         else:
             with ui.button_group().props("rounded") as button_group:
-                TAG_STRINGS = ["favourite", "wanted", "digital", "physical"]
-                tag_states: list[bool] = [
-                    False for _ in range(len(TAG_STRINGS))]
                 if tags.status_code == 200:
-                    for tag in tags.json():
-                        tag_states[TAG_STRINGS.index(tag["tag"])] = True
+                    tag_states: list[bool] = get_tag_states(tags)
+                    for i in range(len(TAG_STRINGS)):
+                        toggle_button.TagToggleButton(
+                            record_id=id, tag_index=i, state=tag_states[i], icon=ACTIVE_TAG_ICONS[i] if tag_states[i] else DISABLED_TAG_ICONS[i])
                 elif tags.status_code == 401:
                     button_group.props()
-                for i in range(len(TAG_STRINGS)):
-                    toggle_button.TagToggleButton(record_id=id,
-                                                  state=tag_states[i], text=TAG_STRINGS[i].capitalize())
 
 
 def total_runtime(tracks: dict) -> int:
