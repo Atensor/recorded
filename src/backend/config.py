@@ -4,8 +4,8 @@ from pathlib import Path
 ENVIRONMENT_VARIABLE = "OAUTH_SECRET_KEY"
 
 ERROR_TEXT = f'''{ENVIRONMENT_VARIABLE} needs to be set
-to do so run this command:
-export {ENVIRONMENT_VARIABLE}=$(openssl rand -hex 32)'''
+to do so run this command in PROJECT_ROOT/src/backend/:
+echo "STORAGE_SECRET_KEY=$(openssl rand -hex 32)" > .env'''
 
 
 def get_oath_secret_key() -> str:
