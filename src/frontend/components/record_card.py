@@ -6,39 +6,28 @@ from pages import TAG_STRINGS, ACTIVE_TAG_ICONS, DISABLED_TAG_ICONS, get_tag_sta
 
 def record_card(record: dict):
 
-    with ui.card().on("click", lambda: ui.navigate.to(f"/record/{record["id"]}")):
+    with ui.card().on("click", lambda: ui.navigate.to(f"/record/{record["id"]}")) as card:
+        card.style("width: 100%")
         with ui.element("div").style("width: 100%"):
-            with ui.row(wrap=False).style("width: 100%"):
+            with ui.column(wrap=False):
                 ui.image(get_cover_art_link(record["artist"]["name"], record["title"])).classes(
-                    "image").style("width:35%")
-                with ui.element("div").style("width: 100%"):
+                    "image").style("width: 100%")
+                with ui.element("div"):
                     record_year = record["date"].split("-")[0]
-                    genreList: list[str] = []
-                    for genre in record["genres"]:
-                        genreList.append('<a class="clean-link" href="http://127.0.0.1:8080/genre/' +
-                                         str(genre["id"]) + '">' + genre["name"] + '</a>')
-                    genres = ", ".join(genre
-                                       for genre in genreList)
                     ui.markdown(
                         f'''**{record["title"]}**
 
-- Artist: <a class="clean-link" href="http://127.0.0.1:8080/artist/{record["artist"]["id"]}">
+<a class="clean-link" href="http://127.0.0.1:8080/artist/{record["artist"]["id"]}">
         {record["artist"]["name"]}
     </a>
 
-- Label: <a class="clean-link" href="http://127.0.0.1:8080/artist/{record["label"]["id"]}">
-        {record["label"]["name"]}
-    </a>
-
-- Genres: {genres}
-
-- Release Year: {record_year}
-                    ''').classes("")
+{record_year}
+                    ''').classes("text-xl")
                 with ui.element("div"):
                     tags = get_my_record_tags(record["id"])
                     if tags.status_code == 200:
                         tag_states: list[bool] = get_tag_states(tags)
-                        with ui.column(wrap=False, align_items="center"):
+                        with ui.row(wrap=False, align_items="center"):
                             for i in range(len(TAG_STRINGS)):
                                 create_tag_icon(
                                     ACTIVE_TAG_ICONS[i] if tag_states[i] else DISABLED_TAG_ICONS[i], TAG_STRINGS[i].capitalize())

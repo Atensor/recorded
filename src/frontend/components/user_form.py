@@ -8,7 +8,7 @@ And it has to contain at least one Character and Number'''
 
 
 def user_form_card(user: UserFormState, top_label: str, api_request: Callable[[UserFormState], None]):
-    with ui.card(align_items="center"):
+    with ui.card(align_items="center").style("width: 80%"):
         ui.label(top_label).classes("text-4xl")
         with ui.element("div"):
             username_input = ui.input(

@@ -11,5 +11,6 @@ def page():
     @ui.page("/")
     def home():
         header()
-        for record in get_records():
-            record_card(record)
+        with ui.grid(columns=4):
+            for record in get_records():
+                record_card(record)

@@ -18,5 +18,6 @@ def page():
 
         ui.label("Records by " + label["name"]).classes("h-1")
 
-        for record in get_label_records(id):
-            record_card(record)
+        with ui.grid(columns=4):
+            for record in get_label_records(id):
+                record_card(record)

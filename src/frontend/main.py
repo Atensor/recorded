@@ -30,7 +30,6 @@ ui.add_css('''
     }
     .nicegui-card{
         border-radius: 25px;
-        min-width: 80%;
         background: #2F3136;
     }
     .nicegui-tab-panel {
