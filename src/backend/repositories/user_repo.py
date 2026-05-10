@@ -5,7 +5,7 @@ from models.user import UserCreate
 def read_users():
     con = get_connection()
     return con.execute('''
-    slect
+    select
         id,
         username
     from
@@ -19,6 +19,32 @@ def read_user(id: int):
     select
         id,
         username
+    from
+        users
+    where
+        id = ?
+    ''', [id]).fetchone()
+
+
+def read_users_admin():
+    con = get_connection()
+    return con.execute('''
+    select
+        id,
+        username,
+        role
+    from
+        users
+    ''').fetchall()
+
+
+def read_user_admin(id: int):
+    con = get_connection()
+    return con.execute('''
+    select
+        id,
+        username,
+        role
     from
         users
     where
@@ -45,8 +71,8 @@ def read_user_db(username: str):
     select
         id,
         username,
-        password_hash,
-        role
+        role,
+        password_hash
     from
         users
     where

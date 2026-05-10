@@ -1,8 +1,8 @@
 from fastapi import APIRouter, Depends, HTTPException, status
-from models.user import UserRead, UserCreate
+from models.user import UserRead, UserReadAdmin, UserCreate
 from models.user_records import User_RecordBase
 from services.auth_service import get_current_user
-from services.user_service import get_users_service, get_user_service, get_user_by_name_service, get_record_users_service, create_user_service, change_username_service, change_password_service, change_role_service, is_admin, is_elevated
+from services.user_service import get_users_service, get_user_service, get_users_admin_service, get_user_admin_service, get_user_by_name_service, get_record_users_service, create_user_service, change_username_service, change_password_service, change_role_service, is_admin, is_elevated
 from services.user_record_service import get_user_records_service, get_user_record_tags_service, add_record_tag_service, delete_record_tag_service
 
 
@@ -24,12 +24,35 @@ async def user_me(current_user: UserRead = Depends(get_current_user)) -> UserRea
 
 @router.get("/me/is_elevated")
 async def user_me_is_elevated(current_user: UserRead = Depends(get_current_user)) -> bool:
-    return is_elevated(current_user.username)
+    return is_elevated(current_user.id)
+
+
+@router.get("/me/is_admin")
+async def user_me_is_admin(current_user: UserRead = Depends(get_current_user)) -> bool:
+    return is_admin(current_user.id)
+
+
+@router.get("/admin_view")
+async def get_users_admin(current_user: UserRead = Depends(get_current_user)) -> list[UserReadAdmin]:
+    if is_admin(current_user.id):
+        return get_users_admin_service()
+    else:
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,
+                            headers={"WWW-Authenticate": "Bearer"})
 
 
 @router.get("/{id}")
 def user(id: int) -> UserRead:
     return get_user_service(id)
+
+
+@router.get("/{id}/admin_view")
+async def get_user_admin(id: int, current_user: UserRead = Depends(get_current_user)):
+    if is_admin(current_user.id):
+        return get_user_admin_service(id)
+    else:
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,
+                            headers={"WWW-Authenticate": "Bearer"})
 
 
 @router.get("/{username}/exists")
@@ -92,7 +115,7 @@ async def put_password(current_user: UserRead = Depends(get_current_user), passw
 
 @router.put("/{user_id}/role")
 async def put_role(current_user: UserRead = Depends(get_current_user), user_id: int = 0, role: str = ""):
-    if is_admin(current_user.username):
+    if is_admin(current_user.id):
         change_role_service(user_id, role)
     else:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,

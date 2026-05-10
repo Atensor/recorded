@@ -7,6 +7,10 @@ def get_users():
     return get("/users/").json()
 
 
+def get_users_admin():
+    return get_with_auth("/users/admin_view")
+
+
 def get_user_me():
     return get_with_auth("/users/me")
 
@@ -15,8 +19,16 @@ def get_user_me_is_elevated():
     return get_with_auth("/users/me/is_elevated")
 
 
+def get_user_me_is_admin():
+    return get_with_auth("/users/me/is_admin")
+
+
 def get_user(int: id):
     return get(f"/users/{id}").json()
+
+
+def get_user_admin(int: id):
+    return get_with_auth(f"/users/{id}/admin_view")
 
 
 def get_user_exists(username: str):
@@ -45,6 +57,10 @@ def put_username(username: str):
 
 def put_password(password: str):
     return put_with_auth("/users/me/password", params=password)
+
+
+def put_role(user_id: int, role: str):
+    return put_with_auth(f"/users/{user_id}/role", params={"role": role})
 
 
 def delete_record_tag(record_id: int, tag: str):

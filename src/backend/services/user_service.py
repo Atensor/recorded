@@ -1,5 +1,5 @@
-from models.user import UserRead, UserReadDB, UserCreate
-from repositories.user_repo import read_users, read_user, read_user_by_name, read_user_db, insert_user, update_username, update_password, update_role
+from models.user import UserRead, UserReadAdmin, UserReadDB, UserCreate
+from repositories.user_repo import read_users, read_user, read_users_admin, read_user_admin, read_user_by_name, read_user_db, insert_user, update_username, update_password, update_role
 from services.hash_service import hash_password
 from services.user_record_service import get_record_user_ids_service, add_record_tag_service, delete_record_tag_service
 
@@ -14,6 +14,18 @@ def get_users_service() -> list[UserRead]:
 def get_user_service(id: int) -> UserRead:
     row = read_user(id)
     return UserRead.to_payload(row)
+
+
+def get_users_admin_service() -> list[UserReadAdmin]:
+    rows = read_users_admin()
+    return [
+        UserReadAdmin.to_payload(row) for row in rows
+    ]
+
+
+def get_user_admin_service(id: int) -> UserReadAdmin:
+    row = read_user_admin(id)
+    return UserReadAdmin.to_payload(row)
 
 
 def get_user_by_name_service(username: str) -> UserRead:
@@ -56,11 +68,11 @@ def get_record_users_service(record_id: int) -> list[UserRead]:
     ]
 
 
-def is_admin(username: str) -> bool:
-    user = UserReadDB(**get_user_db_service(username))
-    return user.role == "admin" or user.username == "Admin"
+def is_admin(id: int) -> bool:
+    user = UserReadAdmin(**get_user_admin_service(id))
+    return user.role == "admin"
 
 
-def is_elevated(username: str) -> bool:
-    user = UserReadDB(**get_user_db_service(username))
+def is_elevated(id: int) -> bool:
+    user = UserReadAdmin(**get_user_admin_service(id))
     return not user.role == "user"
