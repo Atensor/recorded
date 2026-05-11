@@ -2,7 +2,7 @@ from nicegui import ui
 import json
 from datetime import date
 from components.header import header
-from components.record_card import record_card
+from components.record_card import record_card_grid
 from components.toggle_button import TagToggleButton
 from api.record_client import get_records
 
@@ -11,6 +11,4 @@ def page():
     @ui.page("/")
     def home():
         header()
-        with ui.grid(columns=4):
-            for record in get_records():
-                record_card(record)
+        record_card_grid(get_records())

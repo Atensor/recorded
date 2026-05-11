@@ -4,6 +4,8 @@ from api.user_client import get_user_me, get_user_me_is_elevated
 
 
 def header():
+    ui.colors(dark="#C0C0C0")
+    ui.add_head_html('<meta name="darkreader-lock">')
     with ui.header().classes("items-center justify-between") as header:
         header.style("bg-color: #62a3d6; filter: brightness(75%);")
         ui.link("recorded", "/").classes("clean-link-header text-5xl font-bold")

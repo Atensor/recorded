@@ -1,6 +1,6 @@
 from nicegui import ui
 from components.header import header
-from components.record_card import record_card
+from components.record_card import record_card_grid
 from api.artist_client import get_artist
 from api.record_client import get_artist_records
 
@@ -18,6 +18,4 @@ def page():
 
         ui.label("Records by " + artist["name"]).classes("h-1")
 
-        with ui.grid(columns=4):
-            for record in get_artist_records(id):
-                record_card(record)
+        record_card_grid(get_artist_records(id))
