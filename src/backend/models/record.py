@@ -1,12 +1,12 @@
 from pydantic import BaseModel
-from models.artist import ArtistRead as Artist
-from models.label import LabelRead as Label
-from models.genre import GenreRead as Genre
-from models.track import TrackRead, TrackCreate
-from services.artist_service import get_artist_service
-from services.label_service import get_label_service
-from services.genre_service import get_record_genres_service, add_record_genres_service
-from services.track_service import get_record_tracks_service
+from src.backend.models.artist import ArtistRead as Artist
+from src.backend.models.label import LabelRead as Label
+from src.backend.models.genre import GenreRead as Genre
+from src.backend.models.track import TrackRead, TrackCreate
+from src.backend.services.artist_service import get_artist_service
+from src.backend.services.label_service import get_label_service
+from src.backend.services.genre_service import get_record_genres_service, add_record_genres_service
+from src.backend.services.track_service import get_record_tracks_service
 from datetime import date as Date
 
 

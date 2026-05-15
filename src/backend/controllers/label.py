@@ -1,6 +1,6 @@
 from fastapi import APIRouter
-from models.label import LabelRead, LabelCreate
-from services.label_service import get_labels_service, get_label_service, create_label_service
+from src.backend.models.label import LabelRead, LabelCreate
+from src.backend.services.label_service import get_labels_service, get_label_service, create_label_service
 
 router = APIRouter(
     prefix="/labels",

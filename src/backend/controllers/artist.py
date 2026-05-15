@@ -1,6 +1,6 @@
 from fastapi import APIRouter
-from models.artist import ArtistCreate, ArtistRead
-from services.artist_service import get_artist_service, get_artists_service, create_artist_service
+from src.backend.models.artist import ArtistCreate, ArtistRead
+from src.backend.services.artist_service import get_artist_service, get_artists_service, create_artist_service
 
 router = APIRouter(
     prefix="/artists",

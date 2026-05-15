@@ -3,11 +3,11 @@ from fastapi.security import OAuth2PasswordBearer
 from datetime import datetime, timedelta
 from jose import JWTError, jwt
 
-from config import get_oath_secret_key
-from services.user_service import get_user_by_name_service, get_user_db_service
-from services.hash_service import verify_password
-from models.user import UserRead, UserReadDB
-from models.token import TokenData
+from src.backend.config import get_oath_secret_key
+from src.backend.services.user_service import get_user_by_name_service, get_user_db_service
+from src.backend.services.hash_service import verify_password
+from src.backend.models.user import UserRead, UserReadDB
+from src.backend.models.token import TokenData
 
 
 SECRET_KEY = get_oath_secret_key()

@@ -1,4 +1,4 @@
-from api.base_client import get, post
+from src.frontend.api.base_client import get, post
 
 
 def get_records():

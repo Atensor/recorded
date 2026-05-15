@@ -1,6 +1,6 @@
 __pycache__
 .nicegui
 .env
-data.duckdb
+data.*
 record_test.json
 *.sh

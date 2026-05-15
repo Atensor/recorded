@@ -1,7 +1,7 @@
 from nicegui import ui
-from api.cover_art_client import get_cover_art_link
-from api.user_client import get_my_record_tags
-from pages import TAG_STRINGS, ACTIVE_TAG_ICONS, DISABLED_TAG_ICONS, get_tag_states
+from src.frontend.api.cover_art_client import get_cover_art_link
+from src.frontend.api.user_client import get_my_record_tags
+from src.frontend.pages import TAG_STRINGS, ACTIVE_TAG_ICONS, DISABLED_TAG_ICONS, get_tag_states
 
 
 def record_card(record: dict, check_authorization: bool | None = True):

@@ -1,4 +1,4 @@
-from db.database import get_connection
+from src.backend.db.database import get_connection
 
 
 def add_art_path(record_id: int, path: str):

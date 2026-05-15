@@ -1,6 +1,6 @@
-from models.user_records import User_RecordBase
-from models.rating import RecordRatingBase
-from repositories.user_record_repo import read_record_users, read_user_record_ids, read_user_records, read_user_record, insert_user_record, delete_user_record
+from src.backend.models.user_records import User_RecordBase
+from src.backend.models.rating import RecordRatingBase
+from src.backend.repositories.user_record_repo import read_record_users, read_user_record_ids, read_user_records, read_user_record, insert_user_record, delete_user_record
 
 
 def get_record_user_ids_service(record_id: int) -> list[int]:

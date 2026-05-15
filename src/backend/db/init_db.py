@@ -1,5 +1,5 @@
 from pathlib import Path
-from database import get_connection
+from src.backend.db.database import get_connection
 import os
 if os.path.exists("data.duckdb"):
     os.remove("data.duckdb")

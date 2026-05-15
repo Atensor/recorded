@@ -1,7 +1,7 @@
-from models.user import UserRead, UserReadAdmin, UserReadDB, UserCreate
-from repositories.user_repo import read_users, read_user, read_users_admin, read_user_admin, read_user_by_name, read_user_db, insert_user, update_username, update_password, update_role
-from services.hash_service import hash_password
-from services.user_record_service import get_record_user_ids_service, add_record_tag_service, delete_record_tag_service
+from src.backend.models.user import UserRead, UserReadAdmin, UserReadDB, UserCreate
+from src.backend.repositories.user_repo import read_users, read_user, read_users_admin, read_user_admin, read_user_by_name, read_user_db, insert_user, update_username, update_password, update_role
+from src.backend.services.hash_service import hash_password
+from src.backend.services.user_record_service import get_record_user_ids_service, add_record_tag_service, delete_record_tag_service
 
 
 def get_users_service() -> list[UserRead]:

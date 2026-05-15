@@ -1,6 +1,6 @@
 from fastapi import UploadFile
 from pydantic import BaseModel
-from models.record import RecordReadMin as Record
+from src.backend.models.record import RecordReadMin as Record
 
 
 class File(BaseModel):

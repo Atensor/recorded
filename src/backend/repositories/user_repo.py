@@ -1,5 +1,5 @@
-from db.database import get_connection
-from models.user import UserCreate
+from src.backend.db.database import get_connection
+from src.backend.models.user import UserCreate
 
 
 def read_users():

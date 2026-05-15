@@ -1,5 +1,5 @@
-from api.base_client import get, post
-from state.gnere_state import GenreFormState
+from src.frontend.api.base_client import get, post
+from src.frontend.state.gnere_state import GenreFormState
 
 
 def get_genres():

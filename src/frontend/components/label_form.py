@@ -1,6 +1,6 @@
 from nicegui import ui
-from state.label_state import LabelFormState
-from api.label_client import post_label
+from src.frontend.state.label_state import LabelFormState
+from src.frontend.api.label_client import post_label
 
 
 def label_form(label: LabelFormState):

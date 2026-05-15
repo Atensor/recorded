@@ -1,5 +1,5 @@
-from state.track_state import TrackFormState
-from state.artist_state import ArtistState as Artist
+from src.frontend.state.track_state import TrackFormState
+from src.frontend.state.artist_state import ArtistState as Artist
 
 
 class RecordFormState:

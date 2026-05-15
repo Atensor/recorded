@@ -1,6 +1,6 @@
 from nicegui import ui
-from state.artist_state import ArtistFormState
-from api.artist_client import post_artist
+from src.frontend.state.artist_state import ArtistFormState
+from src.frontend.api.artist_client import post_artist
 
 
 def artist_form(artist: ArtistFormState):

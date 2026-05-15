@@ -1,5 +1,5 @@
-from models.genre import GenreCreate, GenreRead
-from repositories.genre_repo import insert_genre, read_record_genres, read_genres, read_genre, add_record_genres
+from src.backend.models.genre import GenreCreate, GenreRead
+from src.backend.repositories.genre_repo import insert_genre, read_record_genres, read_genres, read_genre, add_record_genres
 
 
 def get_genres_service() -> list[GenreRead]:

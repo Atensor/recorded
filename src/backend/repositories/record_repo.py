@@ -1,5 +1,5 @@
-from db.database import get_connection
-from models.record import RecordCreate
+from src.backend.db.database import get_connection
+from src.backend.models.record import RecordCreate
 
 
 def read_record_list():
@@ -112,6 +112,26 @@ def read_genre_records(genre_id: int):
     """, [genre_id]).fetchall()
 
 
+def read_list_records(list_id: int):
+    con = get_connection()
+    return con.execute('''
+    select
+        r.id,
+        r.title,
+        r.date,
+        r.artist_id,
+        r.label_id
+    from
+        records r
+    join
+        list_records lr
+    on
+        r.id = lr.record_id
+    where
+        lr.list_id = ?
+    ''', [list_id]).fetchall()
+
+
 def insert_record(record: RecordCreate):
     con = get_connection()
     return con.execute("""
@@ -144,6 +164,12 @@ def remove_record(id: int):
     con.execute('''
     delete from
         user_records
+    where
+        record_id = ?
+    ''', [id])
+    con.execute('''
+    delete from
+        list_records
     where
         record_id = ?
     ''', [id])

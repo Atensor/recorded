@@ -1,8 +1,8 @@
 from nicegui import ui
 from datetime import date
-from components import header
-from api.track_client import get_track, get_track_record
-from api.cover_art_client import get_cover_art_link
+from src.frontend.components import header
+from src.frontend.api.track_client import get_track, get_track_record
+from src.frontend.api.cover_art_client import get_cover_art_link
 
 # TODO: Add Lyrics
 

@@ -1,5 +1,5 @@
-from models.artist import ArtistCreate, ArtistRead
-from repositories.artist_repo import write_artist, read_artist, read_artists, read_track_features,  add_track_features
+from src.backend.models.artist import ArtistCreate, ArtistRead
+from src.backend.repositories.artist_repo import write_artist, read_artist, read_artists, read_track_features,  add_track_features
 
 
 def get_artists_service() -> list[ArtistRead]:

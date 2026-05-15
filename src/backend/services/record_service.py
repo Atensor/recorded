@@ -1,8 +1,8 @@
-from models.record import RecordCreate, RecordRead, RecordTracksRead, RecordReadMin
-from repositories.record_repo import read_record, insert_record, read_record_list, read_record_min, read_record_list_min, read_artist_records, read_label_records, read_genre_records, remove_record
-from services.genre_service import add_record_genres_service
-from services.track_service import get_track_record_id_service, delete_record_tracks_service, create_record_tracks_service
-from services.user_record_service import get_user_record_ids_service
+from src.backend.models.record import RecordCreate, RecordRead, RecordTracksRead, RecordReadMin
+from src.backend.repositories.record_repo import read_record, insert_record, read_record_list, read_record_min, read_record_list_min, read_artist_records, read_label_records, read_genre_records, read_list_records, remove_record
+from src.backend.services.genre_service import add_record_genres_service
+from src.backend.services.track_service import get_track_record_id_service, delete_record_tracks_service, create_record_tracks_service
+from src.backend.services.user_record_service import get_user_record_ids_service
 
 
 def get_records_service() -> list[RecordRead]:
@@ -10,7 +10,6 @@ def get_records_service() -> list[RecordRead]:
     return [
         RecordRead.to_payload(row) for row in rows
     ]
-
 
 def get_records_min_service() -> list[RecordReadMin]:
     rows = read_record_list_min()
@@ -45,6 +44,13 @@ def get_label_records_service(label_id: int) -> list[RecordRead]:
 
 def get_genre_records_service(genre_id: int) -> list[RecordRead]:
     rows = read_genre_records(genre_id)
+    return [
+        RecordRead.to_payload(row) for row in rows
+    ]
+
+
+def get_list_records_service(list_id: int) -> list[RecordRead]:
+    rows = read_list_records(list_id)
     return [
         RecordRead.to_payload(row) for row in rows
     ]

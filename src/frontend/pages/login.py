@@ -1,8 +1,8 @@
 from nicegui import ui
-from components import header, user_form
-from state.user_sate import UserFormState
-from api.user_client import post_user
-from api.auth_client import post_token
+from src.frontend.components import header, user_form
+from src.frontend.state.user_sate import UserFormState
+from src.frontend.api.user_client import post_user
+from src.frontend.api.auth_client import post_token
 
 
 def page():

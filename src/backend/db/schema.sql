@@ -31,13 +31,6 @@ insert into users values (
     'admin'
 );
 
-update
-        users
-    set
-        role = 'admin'
-    where
-        id = 1;
-
 create table records (
     id integer primary key,
     title varchar not null,
@@ -91,21 +84,30 @@ create table track_features (
     foreign key(artist_id) references artists(id)
 );
 
+create table lists (
+    id integer primary key,
+    title varchar not null,
+    description varchar,
+    last_updated date not null,
+    user_id integer not null,
+    foreign key(user_id) references users(id)
+);
+create or replace sequence seq_lsid start 1;
+
+create table list_records (
+    list_id integer,
+    record_id integer,
+    primary key(list_id, record_id),
+    foreign key(list_id) references lists(id),
+    foreign key(record_id) references records(id)
+);
+
 create table record_ratings (
     record_id integer,
     user_id integer,
     rating integer not null,
     primary key(record_id, user_id),
     foreign key(record_id) references records(id),
-    foreign key(user_id) references users(id)
-);
-
-create table track_ratings (
-    track_id integer,
-    user_id integer,
-    rating integer not null,
-    primary key(track_id, user_id),
-    foreign key(track_id) references tracks(id),
     foreign key(user_id) references users(id)
 );
 
