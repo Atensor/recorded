@@ -1,6 +1,6 @@
 from fastapi import APIRouter
-from src.backend.models.genre import GenreRead, GenreCreate
-from src.backend.services.genre_service import get_genres_service, get_record_genres_service, get_genre_service, create_genre_service
+from ..models.genre import GenreRead, GenreCreate
+from ..services.genre_service import get_genres_service, get_record_genres_service, get_genre_service, create_genre_service
 
 router = APIRouter(
     prefix="/genres",

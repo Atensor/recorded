@@ -1,6 +1,6 @@
 from nicegui import ui
-from src.frontend.components import ROLES
-from src.frontend.api.user_client import get_users_admin, get_user_admin, put_role
+from . import ROLES
+from ..api.user_client import get_users_admin, get_user_admin, put_role
 
 
 def user_management_form_overview():

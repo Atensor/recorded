@@ -1,7 +1,7 @@
 from nicegui import ui, events
-from src.frontend.state.record_state import RecordMinState, Artist
-from src.frontend.api.cover_art_client import put_cover_art
-from src.frontend.api.record_client import get_records_min
+from ..state.record_state import RecordMinState, Artist
+from ..api.cover_art_client import put_cover_art
+from ..api.record_client import get_records_min
 
 
 def cover_art_form(record_state: RecordMinState):

@@ -1,7 +1,7 @@
 from nicegui import ui
 from collections.abc import Callable
-from src.frontend.state.user_sate import UserFormState
-from src.frontend.api.user_client import get_user_exists
+from ..state.user_sate import UserFormState
+from ..api.user_client import get_user_exists
 
 PASSWORD_REQUIREMENTS = '''Password needs be at least 3 Characters long
 And it has to contain at least one Character and Number'''

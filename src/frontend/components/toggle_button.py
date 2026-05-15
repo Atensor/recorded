@@ -1,6 +1,6 @@
 from nicegui import ui
-from src.frontend.api.user_client import post_record_tag, delete_record_tag
-from src.frontend.pages import TAG_STRINGS, ACTIVE_TAG_ICONS, DISABLED_TAG_ICONS
+from ..api.user_client import post_record_tag, delete_record_tag
+from ..pages import TAG_STRINGS, ACTIVE_TAG_ICONS, DISABLED_TAG_ICONS
 
 
 class ToggleButton(ui.button):

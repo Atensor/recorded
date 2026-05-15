@@ -1,5 +1,5 @@
-from src.backend.db.database import get_connection
-from src.backend.models.record import RecordCreate
+from ..db.database import get_connection
+from ..models.record import RecordCreate
 
 
 def read_record_list():

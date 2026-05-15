@@ -1,7 +1,7 @@
 from nicegui import ui
-from src.frontend.api.artist_client import get_artists
-from src.frontend.state.track_state import TrackFormState
-from src.frontend.state.record_state import RecordFormState
+from ..api.artist_client import get_artists
+from ..state.track_state import TrackFormState
+from ..state.record_state import RecordFormState
 
 
 def track_form(track: TrackFormState, update_save_button, artists: dict):

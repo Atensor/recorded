@@ -1,4 +1,4 @@
-from src.frontend.api.base_client import put_file, BASE_URL
+from .base_client import put_file, BASE_URL
 
 
 def get_cover_art_link(artist: str, title: str):

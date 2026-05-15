@@ -1,5 +1,5 @@
-from src.backend.db.database import get_connection
-from src.backend.models.label import LabelCreate as Label
+from ..db.database import get_connection
+from ..models.label import LabelCreate as Label
 
 
 def read_labels():

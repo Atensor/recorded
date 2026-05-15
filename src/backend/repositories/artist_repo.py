@@ -1,5 +1,5 @@
-from src.backend.db.database import get_connection
-from src.backend.models.artist import ArtistCreate as Artist
+from ..db.database import get_connection
+from ..models.artist import ArtistCreate as Artist
 
 
 def read_artists():

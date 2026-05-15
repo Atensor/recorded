@@ -1,6 +1,6 @@
 import requests
-from src.frontend.api.base_client import BASE_URL
-from src.frontend.state.auth_state import TokenState, set_token, get_token
+from .base_client import BASE_URL
+from ..state.auth_state import TokenState, set_token, get_token
 
 
 def get_with_auth(path: str):

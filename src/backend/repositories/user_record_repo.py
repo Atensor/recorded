@@ -1,5 +1,5 @@
-from src.backend.db.database import get_connection
-from src.backend.models.user_records import User_RecordBase
+from ..db.database import get_connection
+from ..models.user_records import User_RecordBase
 
 
 def read_user_records(user_id: int):

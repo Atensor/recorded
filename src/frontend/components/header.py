@@ -1,6 +1,6 @@
 from nicegui import ui
-from src.frontend.state.auth_state import TokenState, clear_token
-from src.frontend.api.user_client import get_user_me, get_user_me_is_elevated
+from ..state.auth_state import TokenState, clear_token
+from ..api.user_client import get_user_me, get_user_me_is_elevated
 
 
 def header():

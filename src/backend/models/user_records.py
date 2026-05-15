@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 from enum import StrEnum
-from src.backend.models.user import UserRead as User
-from src.backend.models.record import RecordRead as Record
+from .user import UserRead as User
+from .record import RecordRead as Record
 
 
 class Tag(StrEnum):

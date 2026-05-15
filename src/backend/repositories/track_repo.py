@@ -1,5 +1,5 @@
-from src.backend.db.database import get_connection
-from src.backend.models.track import TrackCreate
+from ..db.database import get_connection
+from ..models.track import TrackCreate
 
 
 def read_record_tracks(record_id: int):

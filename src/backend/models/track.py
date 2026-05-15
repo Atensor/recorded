@@ -1,6 +1,6 @@
 from pydantic import BaseModel
-from src.backend.models.artist import ArtistRead as Artist
-from src.backend.services.artist_service import get_track_features_service
+from .artist import ArtistRead as Artist
+from ..services.artist_service import get_track_features_service
 
 
 class TrackBase(BaseModel):

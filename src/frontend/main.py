@@ -1,6 +1,6 @@
 from nicegui import ui
-from src.frontend.config import get_storage_secret_key
-from src.frontend.pages import home, record, track, admin, artist, label, genre, login
+from frontend.config import get_storage_secret_key
+from frontend.pages import home, record, track, admin, artist, label, genre, login
 
 
 ui.add_css('''

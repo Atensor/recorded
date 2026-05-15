@@ -1,6 +1,6 @@
-from src.frontend.api.base_client import get, post
-from src.frontend.api.auth_client import get_with_auth, post_with_auth, put_with_auth, delete_with_auth
-from src.frontend.state.user_sate import UserFormState
+from .base_client import get, post
+from .auth_client import get_with_auth, post_with_auth, put_with_auth, delete_with_auth
+from ..state.user_sate import UserFormState
 
 
 def get_users():

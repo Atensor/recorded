@@ -1,5 +1,5 @@
-from src.backend.models.label import LabelCreate, LabelRead
-from src.backend.repositories.label_repo import read_labels, read_label, insert_label
+from ..models.label import LabelCreate, LabelRead
+from ..repositories.label_repo import read_labels, read_label, insert_label
 
 
 def get_labels_service() -> list[LabelRead]:

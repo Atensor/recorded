@@ -1,13 +1,13 @@
 import uvicorn
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
-from src.backend.controllers.artist import router as artist_router
-from src.backend.controllers.genre import router as genre_router
-from src.backend.controllers.label import router as label_router
-from src.backend.controllers.record import router as record_router
-from src.backend.controllers.track import router as track_router
-from src.backend.controllers.user import router as user_router
-from src.backend.controllers.auth import router as auth_router
+from backend.controllers.artist import router as artist_router
+from backend.controllers.genre import router as genre_router
+from backend.controllers.label import router as label_router
+from backend.controllers.record import router as record_router
+from backend.controllers.track import router as track_router
+from backend.controllers.user import router as user_router
+from backend.controllers.auth import router as auth_router
 
 BASE_PATH = "/home/bent/.local/share/recorded/cover_art/"
 app = FastAPI()

@@ -1,6 +1,6 @@
 from nicegui import ui
-from state.gnere_state import GenreFormState
-from api.genre_client import post_genre
+from ..state.gnere_state import GenreFormState
+from ..api.genre_client import post_genre
 
 
 def genre_form(genre: GenreFormState):

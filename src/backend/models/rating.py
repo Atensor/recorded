@@ -1,6 +1,6 @@
 from pydantic import BaseModel
-from src.backend.models.record import RecordRead as Record
-from src.backend.models.track import TrackRead as Track
+from .record import RecordRead as Record
+from .track import TrackRead as Track
 
 
 class RatingBase(BaseModel):

@@ -1,5 +1,5 @@
-from src.backend.db.database import get_connection
-from src.backend.models.genre import GenreCreate as Genre
+from ..db.database import get_connection
+from ..models.genre import GenreCreate as Genre
 
 
 def read_genres():

@@ -1,6 +1,6 @@
 from fastapi import APIRouter
-from src.backend.models.track import TrackRead, TrackWithLyricRead, TrackCreate
-from src.backend.services.track_service import get_track_service
+from ..models.track import TrackRead, TrackWithLyricRead, TrackCreate
+from ..services.track_service import get_track_service
 router = APIRouter(
     prefix="/tracks",
     tags=["tracks"]

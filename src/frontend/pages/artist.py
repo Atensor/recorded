@@ -1,8 +1,8 @@
 from nicegui import ui
-from src.frontend.components.header import header
-from src.frontend.components.record_card import record_card_grid
-from src.frontend.api.artist_client import get_artist
-from src.frontend.api.record_client import get_artist_records
+from ..components.header import header
+from ..components.record_card import record_card_grid
+from ..api.artist_client import get_artist
+from ..api.record_client import get_artist_records
 
 
 def page():

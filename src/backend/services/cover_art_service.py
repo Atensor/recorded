@@ -3,9 +3,9 @@ from os.path import expanduser
 from os import makedirs
 from fastapi import UploadFile
 from pathlib import Path
-from src.backend.models.cover_art import CoverArtCreate
-from src.backend.repositories.cover_art_repo import add_art_path
-from src.backend.services.record_service import get_record_min_service
+from ..models.cover_art import CoverArtCreate
+from ..repositories.cover_art_repo import add_art_path
+from .record_service import get_record_min_service
 
 Path(expanduser("~"), ".local/share/recorded/cover_art/" if system()
      == "linux" else "/AppData/roaming/recorded/cover_art/")

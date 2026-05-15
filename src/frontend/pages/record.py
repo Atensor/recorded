@@ -1,10 +1,10 @@
 from nicegui import ui
 from datetime import date
-from src.frontend.components import header, toggle_button
-from src.frontend.api.record_client import get_record
-from src.frontend.api.cover_art_client import get_cover_art_link
-from src.frontend.api.user_client import get_my_record_tags, post_record_tag, delete_record_tag
-from src.frontend.pages import TAG_STRINGS, ACTIVE_TAG_ICONS, DISABLED_TAG_ICONS, get_tag_states
+from ..components import header, toggle_button
+from ..api.record_client import get_record
+from ..api.cover_art_client import get_cover_art_link
+from ..api.user_client import get_my_record_tags, post_record_tag, delete_record_tag
+from . import TAG_STRINGS, ACTIVE_TAG_ICONS, DISABLED_TAG_ICONS, get_tag_states
 
 
 def page():

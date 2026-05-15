@@ -1,7 +1,7 @@
 import json
 from nicegui import ui
-from src.frontend.components import header, record_form, artist_form, genre_form, label_form, cover_art_form, user_management_form
-from src.frontend.api.user_client import get_user_me_is_admin
+from ..components import header, record_form, artist_form, genre_form, label_form, cover_art_form, user_management_form
+from ..api.user_client import get_user_me_is_admin
 
 
 def page():

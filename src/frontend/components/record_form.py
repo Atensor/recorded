@@ -1,11 +1,11 @@
 from nicegui import ui
-from state.record_state import RecordFormState
-from state.track_state import TrackFormState
-from components.track_form import track_form
-from api.record_client import post_record
-from api.artist_client import get_artists
-from api.label_client import get_labels
-from api.genre_client import get_genres
+from ..state.record_state import RecordFormState
+from ..state.track_state import TrackFormState
+from .track_form import track_form
+from ..api.record_client import post_record
+from ..api.artist_client import get_artists
+from ..api.label_client import get_labels
+from ..api.genre_client import get_genres
 
 
 def record_form(record: RecordFormState):

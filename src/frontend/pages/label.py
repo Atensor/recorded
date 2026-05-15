@@ -1,8 +1,8 @@
 from nicegui import ui
-from components.header import header
-from components.record_card import record_card_grid
-from api.label_client import get_label
-from api.record_client import get_label_records
+from ..components.header import header
+from ..components.record_card import record_card_grid
+from ..api.label_client import get_label
+from ..api.record_client import get_label_records
 
 
 def page():

@@ -1,9 +1,9 @@
 from fastapi import APIRouter, Depends, HTTPException, status
-from src.backend.models.user import UserRead, UserReadAdmin, UserCreate
-from src.backend.models.user_records import User_RecordBase
-from src.backend.services.auth_service import get_current_user
-from src.backend.services.user_service import get_users_service, get_user_service, get_users_admin_service, get_user_admin_service, get_user_by_name_service, get_record_users_service, create_user_service, change_username_service, change_password_service, change_role_service, is_admin, is_elevated
-from src.backend.services.user_record_service import get_user_records_service, get_user_record_tags_service, add_record_tag_service, delete_record_tag_service
+from ..models.user import UserRead, UserReadAdmin, UserCreate
+from ..models.user_records import User_RecordBase
+from ..services.auth_service import get_current_user
+from ..services.user_service import get_users_service, get_user_service, get_users_admin_service, get_user_admin_service, get_user_by_name_service, get_record_users_service, create_user_service, change_username_service, change_password_service, change_role_service, is_admin, is_elevated
+from ..services.user_record_service import get_user_records_service, get_user_record_tags_service, add_record_tag_service, delete_record_tag_service
 
 
 router = APIRouter(
